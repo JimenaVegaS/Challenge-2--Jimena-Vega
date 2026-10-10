@@ -1,1 +1,1 @@
-# Challenge-2--Jimena-Vega
+# Challenge-2 - Jimena-Vega
