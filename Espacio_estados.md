@@ -86,3 +86,31 @@ Se obtiene una selección que cumple las restricciones y presenta el mejor resul
 El espacio de estados proporciona la representación conceptual del problema para el pipeline de búsqueda. Este pipeline explorará alternativas de selección y evaluará los resultados de acuerdo con las restricciones definidas.
 Por otro lado, el pipeline de regresión permitirá estimar una variable cuantitativa relacionada con los recursos potencialmente aprovechables. Esa estimación podrá utilizarse como uno de los criterios para evaluar y comparar candidatos.
 Ambos pipelines estarán relacionados dentro del mismo proyecto, pero cumplirán funciones diferentes: el primero explorará alternativas y el segundo realizará predicciones numéricas.
+
+## 9. Diagrama del espacio de estados
+
+El siguiente diagrama representa las etapas de exploración y evaluación de alternativas para seleccionar asteroides candidatos. Cada transición representa una acción posible dentro del proceso de búsqueda.
+
+```mermaid
+flowchart TD
+    A["Estado inicial: ningún asteroide seleccionado"]
+    B["Evaluar candidatos disponibles"]
+    C["Seleccionar o descartar un candidato"]
+    D{"¿Cumple las restricciones?"}
+    E["Descartar la alternativa no válida"]
+    F["Evaluar el potencial de recursos"]
+    G{"¿Quedan candidatos por evaluar?"}
+    H["Comparar las selecciones válidas"]
+    I["Estado objetivo: mejor selección encontrada"]
+
+    A --> B
+    B --> C
+    C --> D
+    D -- "No" --> E
+    E --> G
+    D -- "Sí" --> F
+    F --> G
+    G -- "Sí" --> C
+    G -- "No" --> H
+    H --> I
+```
